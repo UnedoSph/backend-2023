@@ -46,6 +46,7 @@ class StudentController extends Controller
         return response()->json($response, 201);
     }
 
+    // Praktikum 6
     public function show($id)
     {
         $student = Student::find($id);

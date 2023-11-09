@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnimalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+# mengimport controller Student
 use App\Http\Controllers\StudentController;
 
 /*
