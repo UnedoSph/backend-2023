@@ -17,7 +17,7 @@ class StudentController extends Controller
                 'message' => 'Menampilkan Data Semua Student',
                 'data' => $students,
             ];
-            return response()->json($response, 200);
+            return response()->json($response, 200);    
         } else {
             $response = [
                 'message' => 'Data tidak ada'
@@ -28,22 +28,24 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
+        #validate
+        $validateData = $request->validate([
+            'nama' => 'required',
+            'nim' => 'numeric|required',
+            'email' => 'email|required',
+            'jurusan' => 'required'
+        ]);
 
-        // $input = [
-        // 	'nama' => $request->nama,
-        // 	'nim' => $request->nim,
-        // 	'email' => $request->email,
-        // 	'jurusan' => $request->jurusan
-        // ];
+        $student = Student::create($validateData);
 
-        $student = Student::create($request->all());
 
-        $response = [
-            'message' => 'Data Student Berhasil Dibuat',
+        $data = [
+            'message' => 'Student is created succesfully',
             'data' => $student,
         ];
 
-        return response()->json($response, 201);
+        // mengembalikan data (json) dan kode 201
+        return response()->json($data, 201);
     }
 
     // Praktikum 6
